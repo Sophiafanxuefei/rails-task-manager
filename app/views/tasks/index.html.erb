@@ -1,6 +1,21 @@
 <h1>My Tasks</h1>
 <ol>
   <% @tasks.each do |t| %>
-  <li><a href="/tasks/<%= params[:id].to_i+1 %>">[ ] <%= t.title %></a></li>
+  <li>
+    <a href="/tasks/<%= t.id%>">
+      [ <% if t.completed == true %>
+        <%= "X" %>
+        <% end %>
+      ] <%= t.title %></a>
+    <span>
+      <%= link_to delete_path(t), method: :delete do %>
+        <img src="http://cdn.onlinewebfonts.com/svg/img_276433.png" alt="" style="width:15px">
+      <% end %>
+      </span>
+    </li>
   <% end %>
 </ol>
+
+<a href="/tasks/new">create a new task</a>
+
+
